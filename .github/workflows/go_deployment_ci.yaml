@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./go_webapp
-          file: ./Dockerfile
+          file: go_webapp/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/go-webapp:latest
