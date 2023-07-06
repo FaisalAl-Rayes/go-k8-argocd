@@ -15,4 +15,4 @@ configMapGenerator:
 secretGenerator:
   - name: go-secrets
     envs:
-      - secrets/go.secrets
+      - secrets/go.secret
