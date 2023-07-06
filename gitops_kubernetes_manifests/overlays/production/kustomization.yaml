@@ -1,0 +1,18 @@
+resources:
+  - ../../base
+  - namespace.yaml
+
+namespace: production
+
+patchesStrategicMerge:
+  - patches/go-deployment-patch.yaml
+
+configMapGenerator:
+  - name: go-envs
+    envs:
+      - envs/go.env
+
+secretGenerator:
+  - name: go-secrets
+    envs:
+      - secrets/go.secrets

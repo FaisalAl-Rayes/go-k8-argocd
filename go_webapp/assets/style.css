@@ -1,0 +1,182 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--light-green: #00ff00;
+	--dark-green: #003b00;
+	--dark-grey: #777;
+	--cream: #f5f5dc;
+	--wine-red: #8e2626;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a.button {
+	border: 2px solid #f5f5dc;
+	color: var(--dark-green);
+	border-radius: 4px;
+	padding: 6px 24px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+a.button:hover {
+	text-decoration: none;
+	background-color: var(--dark-green);
+	color: var(--wine-red);
+}
+
+header {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--wine-red);
+	padding: 5px 10px;
+	align-items: center;
+}
+
+.logo {
+	color: #f5f5dc;
+}
+
+form {
+	height: calc(100% - 10px);
+}
+
+.search-input {
+	width: 500px;
+	height: 100%;
+	border-radius: 4px;
+	border-color: transparent;
+	background-color: var(--cream);
+	color: var(--wine-red);
+	font-size: 16px;
+	line-height: 1.4;
+	padding-left: 5px;
+}
+
+.container {
+	width: 100%;
+	max-width: max-content;
+	margin: 0 auto;
+	padding: 80px 20px 40px;
+}
+
+.result-count {
+	color: var(--dark-grey);
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.search-results {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+	grid-gap: 10px;
+	list-style: none;
+}
+
+.news-article {
+	display: flex;
+	align-items: flex-start;
+	width: fit-content;
+	height: fit-content;
+	margin-bottom: 30px;
+	border: 3px solid var(--wine-red);
+	padding: 15px;
+	border-radius: 4px;
+	justify-content: space-between;
+}
+
+.article-image {
+	width: 200px;
+	flex-grow: 0;
+	flex-shrink: 0;
+	margin-left: 20px;
+}
+
+.title {
+	margin-bottom: 15px;
+}
+
+.description {
+	color: var(--dark-grey);
+	margin-bottom: 15px;
+}
+
+.metadata {
+	display: flex;
+	color: var(--dark-green);
+	font-size: 14px;
+}
+
+.published-date::before {
+	content: '\0000a0\002022\0000a0';
+	margin: 0 3px;
+}
+
+.pagination {
+	margin-top: 20px;
+}
+
+.previous-page {
+	margin-right: 20px;
+}
+
+@media screen and (max-width: 550px) {
+	header {
+		flex-direction: column;
+		height: auto;
+		padding-bottom: 10px;
+	}
+
+	.logo {
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+
+	form,
+	.search-input {
+		width: 100%;
+	}
+
+	.github-button {
+		display: none;
+	}
+
+	.title {
+		font-size: 18px;
+	}
+
+	.description {
+		font-size: 14px;
+	}
+
+	.article-image {
+		display: none;
+	}
+}
