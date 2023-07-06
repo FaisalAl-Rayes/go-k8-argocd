@@ -41,7 +41,7 @@ jobs:
   update-manifests:
     name: Update the manifests for ArgoCD to sync.
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: false
     env: 
       CI_COMMIT_MESSAGE: "Continuous Integration: Manifests generated and updated."
       CI_COMMIT_AUTHOR: Github Workflows
@@ -71,7 +71,7 @@ jobs:
     name: Test the generated kubernetes manifests
     runs-on: ubuntu-latest
     needs: update-manifests
-    continue-on-error: true
+    continue-on-error: false
 
     steps:
       - name: Checkout
