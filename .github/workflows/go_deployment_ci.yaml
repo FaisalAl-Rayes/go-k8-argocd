@@ -31,7 +31,7 @@ jobs:
 
       - name: Generate Unique Tag
         id: generate_tag
-        run: echo "::set-output name=tag::$(date -u +'%Y%m%d-%H%M%S')"
+        run: echo "tag=$(date -u +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Build and push
         id: docker_build
