@@ -1,4 +1,4 @@
-# git commit: 8b7bff5c7cf1c53b272cdcfae37e9b66b6056db4
+# git commit: d0c98fd5b5217ad35d8e3959d10ccd35566f0dde
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -67,6 +67,12 @@ spec:
         name: go-webapp-container
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           limits:
             cpu: "1"
