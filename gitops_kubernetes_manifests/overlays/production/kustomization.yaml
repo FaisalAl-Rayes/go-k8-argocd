@@ -14,5 +14,5 @@ configMapGenerator:
 
 secretGenerator:
   - name: go-secrets
-    envs:
-      - secrets/go.secret
+    files:
+      - secrets/news_api_key.secret

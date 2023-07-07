@@ -30,6 +30,29 @@ spec:
           requests:
             memory: 256Mi
             cpu: "0.2"
+        livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+        securityContext:
+          seccompProfile:
+            type: RuntimeDefault
+          fsGroup: 10001
+          capabilities:
+            drop:
+              - NET_RAW
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+        volumeMounts:
+          - name: news-api-key
+            mountPath: /secrets
+      volumes:
+        - name: news-api-key
+          secret:
+            secretName: go-secrets
 ---
 apiVersion: v1
 kind: Service

@@ -38,16 +38,17 @@ RUN apk add --update --no-cache --virtual .build-deps shadow && \
 			--shell /sbin/nologin \
 			--no-create-home \
 			--uid 10001 \
-			appuser
+			appuser && \
+	# Creating the secrets directory to pass kubernetes secrets as files.
+	mkdir /secrets && \
+	# Setting the unprivileged user as owner of the /secrets directory.
+	chown -R appuser:appuser /secrets
 
 # Get the built binary from the builder image.
 COPY --from=Builder /go/bin/news-webapp /go/bin/news-webapp
 
 # Use an unprivileged user.
 USER appuser:appuser
-
-# # Port on which the webapp will be running.
-# EXPOSE 8080
 
 # Run the built binary.
 ENTRYPOINT /go/bin/news-webapp

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"log"
 	"math"
@@ -39,7 +40,11 @@ func (s *Search) IsLastPage() bool {
 	return s.NextPage >= s.TotalPages
 }
 
-func indexHandler(writer http.ResponseWriter, request *http.Request) {
+func healthHandler(writer http.ResponseWriter, _ *http.Request) {
+	fmt.Fprint(writer, "OK")
+}
+
+func indexHandler(writer http.ResponseWriter, _ *http.Request) {
 	buf := &bytes.Buffer{}
 	err := htmlTemplate.Execute(buf, nil)
 	if err != nil {
@@ -105,13 +110,14 @@ func main() {
 		port = "8080"
 	}
 
-	apiKey := os.Getenv("NEWS_API_KEY")
-	if apiKey == "" {
-		log.Fatal("Env: apiKey must be set")
+	apiKey, err := os.ReadFile("/secrets/news_api_key.secret")
+	if err != nil {
+		log.Fatal("ApiKey must be set")
+		os.Exit(1)
 	}
 
 	myClient := &http.Client{Timeout: 10 * time.Second}
-	apiClient := news.NewClient(myClient, apiKey, 20)
+	apiClient := news.NewClient(myClient, string(apiKey), 20)
 
 	// Initializing the webserver.
 	mux := http.NewServeMux()
@@ -122,5 +128,7 @@ func main() {
 
 	mux.HandleFunc("/", indexHandler)
 	mux.HandleFunc("/search", searchHandler(apiClient))
+	mux.HandleFunc("/health", healthHandler) // Endpoint for liveness probe
+
 	http.ListenAndServe(":"+port, mux)
 }
