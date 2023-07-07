@@ -51,7 +51,6 @@ jobs:
     name: Update the manifests for ArgoCD to sync.
     if: "!startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username != 'GitHub Workflows'"
     runs-on: ubuntu-latest
-    continue-on-error: false
     needs: build
 
     steps:
@@ -71,7 +70,9 @@ jobs:
           echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" > gitops_kubernetes_manifests/overlays/development/secrets/go.secret
 
       - name: Generate and update manifests
-        run: kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
+        run: |
+          kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
+          sed -i '1s/^/#${GITHUB_SHA}\n/'
 
       - name: Git setup, add, commit, and push
         run: |
