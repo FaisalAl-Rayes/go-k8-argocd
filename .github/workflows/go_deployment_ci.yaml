@@ -68,7 +68,7 @@ jobs:
       - name: Set up the go.env and go.secret files
         run: |
           echo "PORT=${{ secrets.PORT }}" > gitops_kubernetes_manifests/overlays/development/envs/go.env
-          echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" > gitops_kubernetes_manifests/overlays/development/secrets/go.secret
+          echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" > gitops_kubernetes_manifests/overlays/development/secrets/news_api_key.secret
 
       - name: Generate and update manifests
         run: |
