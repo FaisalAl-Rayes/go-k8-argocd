@@ -52,6 +52,7 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username != 'GitHub Workflows'"
     runs-on: ubuntu-latest
     needs: build
+    continue-on-error: false
 
     steps:
       - name: Checkout repository

@@ -4,8 +4,8 @@ resources:
 
 namespace: production
 
-patchesStrategicMerge:
-  - patches/go-deployment-patch.yaml
+patches:
+  - patch: patches/go-deployment-patch.yaml
 
 configMapGenerator:
   - name: go-envs
