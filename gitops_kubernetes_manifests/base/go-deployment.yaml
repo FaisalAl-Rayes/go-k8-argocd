@@ -37,7 +37,6 @@ spec:
         securityContext:
           seccompProfile:
             type: RuntimeDefault
-          fsGroup: 10001
           capabilities:
             drop:
               - NET_RAW
