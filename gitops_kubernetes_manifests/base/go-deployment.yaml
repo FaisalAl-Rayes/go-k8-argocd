@@ -17,8 +17,6 @@ spec:
       - name: go-webapp-container
         image: localhost:5000/go-webapp-image:latest
         envFrom:
-          - secretRef:
-              name: go-secrets
           - configMapRef:
               name: go-envs
         ports:
