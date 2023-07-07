@@ -1,4 +1,4 @@
-# git commit: fafa4de6d264c85f2108f9880c0d800f5ed028f6
+# git commit: 39c092c435f938e12d05397ce5bfc0ddcca91ac1
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -79,7 +79,6 @@ spec:
           capabilities:
             drop:
             - NET_RAW
-          fsGroup: 10001
           readOnlyRootFilesystem: true
           runAsNonRoot: true
           seccompProfile:
