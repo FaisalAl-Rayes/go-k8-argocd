@@ -40,8 +40,14 @@ func (s *Search) IsLastPage() bool {
 	return s.NextPage >= s.TotalPages
 }
 
-func healthHandler(writer http.ResponseWriter, _ *http.Request) {
-	fmt.Fprint(writer, "OK")
+func livenessHandler(writer http.ResponseWriter, _ *http.Request) {
+	writer.WriteHeader(http.StatusOK)
+	fmt.Fprintln(writer, "Container is alive!")
+}
+
+func readinessHandler(writer http.ResponseWriter, _ *http.Request) {
+	writer.WriteHeader(http.StatusOK)
+	fmt.Fprintln(writer, "Application is ready!")
 }
 
 func indexHandler(writer http.ResponseWriter, _ *http.Request) {
@@ -128,7 +134,8 @@ func main() {
 
 	mux.HandleFunc("/", indexHandler)
 	mux.HandleFunc("/search", searchHandler(apiClient))
-	mux.HandleFunc("/health", healthHandler) // Endpoint for liveness probe
+	mux.HandleFunc("/health", livenessHandler) // Endpoint for liveness probe
+ mux.HandleFunc("/ready", readinessHandler) // Endpoint for readiness probe
 
 	http.ListenAndServe(":"+port, mux)
 }
