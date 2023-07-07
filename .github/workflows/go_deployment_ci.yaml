@@ -73,7 +73,7 @@ jobs:
       - name: Generate and update manifests
         run: |
           kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
-          sed -i '1s/^/#${GITHUB_SHA}\n/' gitops_kubernetes_manifests/argo_destination/manifests.yaml
+          sed -i '1s/^/#${{ github.sha }}\n/' gitops_kubernetes_manifests/argo_destination/manifests.yaml
 
       - name: Git setup, add, commit, and push
         run: |
