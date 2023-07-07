@@ -1,4 +1,4 @@
-#${GITHUB_SHA}
+#7d714bfe48d3e2b4f7e85ee3e2c20b6147dc40f3
 apiVersion: v1
 kind: Namespace
 metadata:
