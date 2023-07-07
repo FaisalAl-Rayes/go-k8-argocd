@@ -1,4 +1,4 @@
-# git commit: 8329663876e1f6f9104068a9f265a2e5198f9974
+# git commit: 7f4550aa04d699474a8521d09cf3e28436c0b02d
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -14,10 +14,10 @@ metadata:
 ---
 apiVersion: v1
 data:
-  NEWS_API_KEY: ZGVtbyBrZXkgc2hvdWxkIGJlIGhlcmUgYnV0IG5pY2UgdHJ5
+  news_api_key.secret: TkVXU19BUElfS0VZPWRlbW8ga2V5IHNob3VsZCBiZSBoZXJlIGJ1dCBuaWNlIHRyeQo=
 kind: Secret
 metadata:
-  name: go-secrets-7tcf4hmdd7
+  name: go-secrets-tfkd2thhb4
   namespace: development
 type: Opaque
 ---
@@ -56,10 +56,16 @@ spec:
       containers:
       - envFrom:
         - secretRef:
-            name: go-secrets-7tcf4hmdd7
+            name: go-secrets-tfkd2thhb4
         - configMapRef:
             name: go-envs-td2thftdb5
         image: localhost:5000/go-webapp-image:latest
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
         name: go-webapp-container
         ports:
         - containerPort: 8080
@@ -70,3 +76,20 @@ spec:
           requests:
             cpu: "0.2"
             memory: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - NET_RAW
+          fsGroup: 10001
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /secrets
+          name: news-api-key
+      volumes:
+      - name: news-api-key
+        secret:
+          secretName: go-secrets-tfkd2thhb4
