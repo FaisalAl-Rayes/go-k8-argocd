@@ -13,7 +13,7 @@ jobs:
 
   build:
     name: Build
-    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == '${{ env.CI_COMMIT_AUTHOR }}'"
+    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == env.CI_COMMIT_AUTHOR"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -49,7 +49,7 @@ jobs:
   
   update-manifests:
     name: Update the manifests for ArgoCD to sync.
-    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == '${{ env.CI_COMMIT_AUTHOR }}'"
+    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == env.CI_COMMIT_AUTHOR"
     runs-on: ubuntu-latest
     continue-on-error: false
     needs: build
@@ -83,7 +83,7 @@ jobs:
 
   test-built-image:
     name: Test the generated kubernetes manifests
-    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == '${{ env.CI_COMMIT_AUTHOR }}'"
+    if: "startsWith(github.event.head_commit.message, '[ci-auto-commit] ') && github.event.head_commit.author.username == env.CI_COMMIT_AUTHOR"
     runs-on: ubuntu-latest
     needs: update-manifests
     continue-on-error: false
