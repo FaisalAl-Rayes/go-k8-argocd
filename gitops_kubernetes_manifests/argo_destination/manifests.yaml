@@ -1,4 +1,4 @@
-# git commit: 9e2d9e5aed861b243d4652b96d8493a661457cc3
+# git commit: 882341f46b6abb0412db631f91023b70eee7498b
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -57,7 +57,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: go-envs-td2thftdb5
-        image: thedevfactor/go-webapp:9e2d9e5aed861b243d4652b96d8493a661457cc3
+        image: thedevfactor/go-webapp:882341f46b6abb0412db631f91023b70eee7498b
         livenessProbe:
           httpGet:
             path: /health
@@ -86,6 +86,7 @@ spec:
             drop:
             - NET_RAW
           readOnlyRootFilesystem: true
+          runAsUser: 10001
         volumeMounts:
         - mountPath: /secrets
           name: news-api-key
