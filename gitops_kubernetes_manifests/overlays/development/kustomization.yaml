@@ -10,9 +10,9 @@ patches:
 configMapGenerator:
   - name: go-envs
     envs:
-      - envs/go.env
+      - envs/go.env.example
 
 secretGenerator:
   - name: go-secrets
     files:
-      - secrets/news_api_key.secret
+      - secrets/news_api_key.secret.example
