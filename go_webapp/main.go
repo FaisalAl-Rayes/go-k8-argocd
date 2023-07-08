@@ -116,7 +116,7 @@ func main() {
 		port = "8080"
 	}
 
-	apiKey, err := os.ReadFile("/secrets/news_api_key.secret")
+	apiKey, err := os.ReadFile("/secrets/news_api_key.secret.example")
 	if err != nil {
 		log.Fatal("ApiKey must be set")
 		os.Exit(1)
