@@ -49,6 +49,7 @@ spec:
                 - NET_RAW
             readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
+            runAsUser: 10001
       volumes:
         - name: news-api-key
           secret:
