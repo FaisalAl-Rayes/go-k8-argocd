@@ -1,4 +1,4 @@
-# git commit: d0c98fd5b5217ad35d8e3959d10ccd35566f0dde
+# git commit: 80004b12df38c20f7f25d939cd653ce4c12b4203
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -57,7 +57,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: go-envs-td2thftdb5
-        image: localhost:5000/go-webapp-image:latest
+        image: localhost:5000/go-webapp-image:v1
         livenessProbe:
           httpGet:
             path: /health
@@ -86,12 +86,13 @@ spec:
             drop:
             - NET_RAW
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          seccompProfile:
-            type: RuntimeDefault
         volumeMounts:
         - mountPath: /secrets
           name: news-api-key
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       volumes:
       - name: news-api-key
         secret:
