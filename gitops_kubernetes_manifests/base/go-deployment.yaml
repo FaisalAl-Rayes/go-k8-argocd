@@ -43,6 +43,11 @@ spec:
         volumeMounts:
           - name: news-api-key
             mountPath: /secrets
+        securityContext:
+            capabilities:
+              drop:
+                - NET_RAW
+            runAsNonRoot: true
       volumes:
         - name: news-api-key
           secret:
@@ -50,12 +55,7 @@ spec:
       securityContext:
             seccompProfile:
               type: RuntimeDefault
-            capabilities:
-              drop:
-                - NET_RAW
-            readOnlyRootFilesystem: true
             runAsNonRoot: true
-            allowPrivilegeEscalation: false
 ---
 apiVersion: v1
 kind: Service
