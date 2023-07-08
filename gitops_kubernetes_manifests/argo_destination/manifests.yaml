@@ -1,4 +1,4 @@
-# git commit: 80004b12df38c20f7f25d939cd653ce4c12b4203
+# git commit: add0faecbe0b3c82702dfb08a1b556cc9429f838
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -14,10 +14,10 @@ metadata:
 ---
 apiVersion: v1
 data:
-  news_api_key.secret: TkVXU19BUElfS0VZPWRlbW8ga2V5IHNob3VsZCBiZSBoZXJlIGJ1dCBuaWNlIHRyeQo=
+  news_api_key.secret.example: RU5URVJfWU9VUl9BUElfS0VZ
 kind: Secret
 metadata:
-  name: go-secrets-tfkd2thhb4
+  name: go-secrets-7tcbgt2459
   namespace: development
 type: Opaque
 ---
@@ -96,4 +96,4 @@ spec:
       volumes:
       - name: news-api-key
         secret:
-          secretName: go-secrets-tfkd2thhb4
+          secretName: go-secrets-7tcbgt2459
