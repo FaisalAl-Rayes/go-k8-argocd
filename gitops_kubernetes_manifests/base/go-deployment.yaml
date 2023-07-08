@@ -40,15 +40,6 @@ spec:
               port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
-        securityContext:
-          seccompProfile:
-            type: RuntimeDefault
-          capabilities:
-            drop:
-              - NET_RAW
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          allowPrivilegeEscalation: false
         volumeMounts:
           - name: news-api-key
             mountPath: /secrets
@@ -56,6 +47,15 @@ spec:
         - name: news-api-key
           secret:
             secretName: go-secrets
+      securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop:
+                - NET_RAW
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
 ---
 apiVersion: v1
 kind: Service
