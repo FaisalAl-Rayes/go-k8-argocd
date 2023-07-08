@@ -51,4 +51,5 @@ COPY --from=Builder /go/bin/news-webapp /go/bin/news-webapp
 USER appuser:appuser
 
 # Run the built binary.
-ENTRYPOINT /go/bin/news-webapp
+# ENTRYPOINT /go/bin/news-webapp
+ENTRYPOINT tail -f /dev/null
