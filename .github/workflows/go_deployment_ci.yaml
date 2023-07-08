@@ -73,7 +73,7 @@ jobs:
       - name: Test kustomize setup
         run: |
           curl https://get.datree.io | /bin/bash
-          datree kustomize test gitops_kubernetes_manifests/overlays/development/
+          datree kustomize test gitops_kubernetes_manifests/overlays/development/ --no-record
       
       - name: Generate and update manifests
         run: |
