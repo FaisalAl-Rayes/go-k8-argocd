@@ -48,6 +48,7 @@ spec:
               drop:
                 - NET_RAW
             readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
       volumes:
         - name: news-api-key
           secret:
