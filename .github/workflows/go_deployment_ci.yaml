@@ -70,6 +70,11 @@ jobs:
           echo "PORT=${{ secrets.PORT }}" > gitops_kubernetes_manifests/overlays/development/envs/go.env
           echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" > gitops_kubernetes_manifests/overlays/development/secrets/news_api_key.secret
 
+      - name: Test kustomize setup
+        run: |
+          curl https://get.datree.io | /bin/bash
+          datree kustomize test gitops_kubernetes_manifests/overlays/development/
+      
       - name: Generate and update manifests
         run: |
           kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
@@ -82,9 +87,3 @@ jobs:
           git add gitops_kubernetes_manifests/argo_destination/manifests.yaml
           git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
-
-      - name: Install Datree to test the generated manifests
-        run: curl https://get.datree.io | /bin/bash
-        
-      - name: Run Datree's policy check
-        run: datree test gitops_kubernetes_manifests/argo_destination/manifests.yaml --no-record

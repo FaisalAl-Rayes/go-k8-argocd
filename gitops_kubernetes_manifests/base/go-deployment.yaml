@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: go-webapp-container
-        image: localhost:5000/go-webapp-image:latest
+        image: localhost:5000/go-webapp-image:v1
         envFrom:
           - configMapRef:
               name: go-envs
