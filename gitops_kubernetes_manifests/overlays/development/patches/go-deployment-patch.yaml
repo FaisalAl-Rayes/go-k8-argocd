@@ -10,4 +10,4 @@ spec:
     spec:
       containers:
         - name: go-webapp-container
-          image: thedevfactor/go-webapp:13dcb4e0bc160cb7d244d092620c956c16963c35
+          image: thedevfactor/go-webapp:3257ec6b402c131920827db91f31f789e2c59a7a
