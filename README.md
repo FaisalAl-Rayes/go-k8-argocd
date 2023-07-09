@@ -1,12 +1,3 @@
-# go_k8_argocd
-A mini project to play around with a few technologies such as:
-- go
-- Docker
-- Kubernetes (Minikube)
-- Kustomize
-- ArgoCD
-- Github workflows
-
 <a name="readme-top"></a>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
