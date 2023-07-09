@@ -88,13 +88,13 @@ spec:
           readOnlyRootFilesystem: true
           runAsUser: 10001
         volumeMounts:
-        - mountPath: /secrets
-          name: news-api-key
+        - name: go-secrets-volume
+          mountPath: /secrets
       securityContext:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       volumes:
-      - name: news-api-key
+      - name: go-secrets-volume
         secret:
           secretName: go-secrets-7tcbgt2459
