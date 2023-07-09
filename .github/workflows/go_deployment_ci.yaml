@@ -72,18 +72,24 @@ jobs:
           curl https://get.datree.io | /bin/bash
           datree kustomize test gitops_kubernetes_manifests/overlays/development/ --no-record
       
+      # This step is very important for the CD part of the pipeline.
+      # The generated manifests in the step(Generate and update manifests) are for any user to take a quick look on the manifests built by Kustomize and are being applied.
+      # However ArgoCD is pointing towards the particular overlay with a kustomize.yaml file to generate and apply the manifests immediately.
+      # Put simply it is the overlay that will be the source of the apply (kubectl apply -k overlay/development) NOT (kubectl apply -f gitops_kubernetes_manifests/argo_destination/manifests.yaml)
+      - name: Update the patch with the approperiate tag name for ArgoCD
+        run: |
+          sed -i 's|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:.*|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:${{ github.sha }}|' gitops_kubernetes_manifests/overlays/development/patches/go-deployment-patch.yaml
+
       - name: Generate and update manifests
         run: |
           kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
           sed -i '1s/^/# git commit: ${{ github.sha }}\n/' gitops_kubernetes_manifests/argo_destination/manifests.yaml
-          cat gitops_kubernetes_manifests/argo_destination/manifests.yaml
-          sed -i 's|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:.*|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:${{ github.sha }}|' gitops_kubernetes_manifests/argo_destination/manifests.yaml
-          cat gitops_kubernetes_manifests/argo_destination/manifests.yaml
 
       - name: Git setup, add, commit, and push
         run: |
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "${{ secrets.GIT_EMAIL }}"
-          git add gitops_kubernetes_manifests/argo_destination/manifests.yaml
+          git add gitops_kubernetes_manifests/argo_destination/manifests.yaml 
+          git add gitops_kubernetes_manifests/overlays/development/patches/go-deployment-patch.yaml
           git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push

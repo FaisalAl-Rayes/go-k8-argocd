@@ -6,3 +6,8 @@ metadata:
     app: go-webapp
 spec:
   replicas: 2
+  template:
+    spec:
+      containers:
+        - name: go-webapp-container
+          image: thedevfactor/go-webapp:image-tag
