@@ -1,4 +1,4 @@
-# git commit: ce3d295d7720d9adc659ca3fa41db5c380246b38
+# git commit: 032d4547d00ea84b161c856a6bcc888b9cf47579
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -57,7 +57,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: go-envs-td2thftdb5
-        image: thedevfactor/go-webapp:ce3d295d7720d9adc659ca3fa41db5c380246b38
+        image: thedevfactor/go-webapp:032d4547d00ea84b161c856a6bcc888b9cf47579
         livenessProbe:
           httpGet:
             path: /health
@@ -88,13 +88,13 @@ spec:
           readOnlyRootFilesystem: true
           runAsUser: 10001
         volumeMounts:
-        - name: go-secrets-volume
-          mountPath: /secrets
+        - mountPath: /secrets
+          name: news-api-key
       securityContext:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
       volumes:
-      - name: go-secrets-volume
+      - name: news-api-key
         secret:
           secretName: go-secrets-7tcbgt2459
