@@ -48,9 +48,14 @@ You can connect with me through LinkedIn using the link the following link: [![L
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![website-preview][website-preview]<!-- (https://mydomain.com) -->
+This is a project to share my approach to building a basic go website using multiple technologies that can be seen in the <a href="#built-with">Built With</a> section. The motivation behind this project is to display the learning process of new technologies involved in building this project as well as its CI/CD pipeline. The successful functional end result should be as displayed here if you follow the <a href="#functional-run">Functional Run</a>:
 
-This is a project to share my approach to building a basic go website using multiple technologies that can be seen in the <a href="#built-with">Built With</a> section. The motivation behind this project is to display the learning process of new technologies involved in building this project as well as its CI/CD pipeline.
+![go-app-results-page][go-app-results-page]
+
+However if you are just interested in the serving of the webapp in the kubernetes cluster you should follow the <a href="#basic-run">Basic Run</a> which would make the successful end result looking like:
+
+![go-app-landing-page][go-app-landing-page]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
