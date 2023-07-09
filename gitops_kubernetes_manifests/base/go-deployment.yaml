@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: go-webapp-container
-        image: thedevfactor/go-webapp:add0faecbe0b3c82702dfb08a1b556cc9429f838
+        image: thedevfactor/go-webapp:image-tag
         envFrom:
           - configMapRef:
               name: go-envs

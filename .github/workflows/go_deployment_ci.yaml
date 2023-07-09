@@ -76,7 +76,9 @@ jobs:
         run: |
           kustomize build gitops_kubernetes_manifests/overlays/development > gitops_kubernetes_manifests/argo_destination/manifests.yaml
           sed -i '1s/^/# git commit: ${{ github.sha }}\n/' gitops_kubernetes_manifests/argo_destination/manifests.yaml
+          cat gitops_kubernetes_manifests/argo_destination/manifests.yaml
           sed -i 's|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:.*|image: ${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_APP_REPO }}:${{ github.sha }}|' gitops_kubernetes_manifests/argo_destination/manifests.yaml
+          cat gitops_kubernetes_manifests/argo_destination/manifests.yaml
 
       - name: Git setup, add, commit, and push
         run: |
