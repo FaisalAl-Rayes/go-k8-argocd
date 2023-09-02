@@ -1,4 +1,4 @@
-# git commit: 3257ec6b402c131920827db91f31f789e2c59a7a
+# git commit: 971bcacc6356a377e58ac7b92bcb1a1dfb15a82a
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -57,7 +57,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: go-envs-td2thftdb5
-        image: thedevfactor/go-webapp:3257ec6b402c131920827db91f31f789e2c59a7a
+        image: thedevfactor/go-webapp:971bcacc6356a377e58ac7b92bcb1a1dfb15a82a
         livenessProbe:
           httpGet:
             path: /health
