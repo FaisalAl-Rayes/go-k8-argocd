@@ -196,7 +196,7 @@ In this section you can see how easy it is to get this kubernetes cluster up and
     __IMPORTANT__: This makes you see that the cluster is up and running serving the Go webapp however the webapp is not functional for it needs a proper API key that you get directly from <a href="https://newsapi.org/">newsapi</a>. Check the next section *Functional Run*.
 
 ### Functional Run
-1. create your own __PRIVATE REPO__ with the content in <a href="https://github.com/FaisalAl-Rayes/go_k8_argocd">this repo</a> so you can actually freely supply the API key into version control.
+1. create your own __PRIVATE REPO__ with the content in <a href="https://github.com/FaisalAl-Rayes/go-k8-argocd">this repo</a> so you can actually freely supply the API key into version control.
 
 2. Give access to ArgoCD of your __PRIVATE REPO__ following the <a href="https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/">ArgoCD Private Repositories Official Page</a> 
 

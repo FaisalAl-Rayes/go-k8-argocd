@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/FaisalAl-Rayes/go_k8_argocd.git
+    repoURL: https://github.com/FaisalAl-Rayes/go-k8-argocd.git
     targetRevision: HEAD
     path: gitops_kubernetes_manifests/overlays/development
 
